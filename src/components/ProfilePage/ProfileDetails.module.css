@@ -1,0 +1,9 @@
+.profile {
+  margin: 3rem auto;
+  text-align: center;
+  border: 1px dashed #1b2e3f;
+}
+
+.profile h1 {
+  font-size: 5rem;
+}

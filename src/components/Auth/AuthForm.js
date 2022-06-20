@@ -1,25 +1,50 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useContext } from "react";
+import { useHistory } from "react-router-dom";
+import AuthContext from "../../store/auth-context";
 
-import classes from "./AuthForm.module.css";
+import styles from "./AuthForm.module.css";
+
+/*
+------------------------------------------------------------------------
+--- TODO: refactor component to outsource error message handling     ---
+--- TODO: create custom hook to deal with http requests              ---
+------------------------------------------------------------------------
+*/
 
 const AuthForm = () => {
+  // Flag to control if user is trying to sign up or sign in
   const [isLogin, setIsLogin] = useState(true);
+
+  // References to get data in email and password fields
   const emailInputRef = useRef();
   const passwordInputRef = useRef();
+
+  // Variable containing the standardized error messaage
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Context access point to get authentication token information
+  const authCtx = useContext(AuthContext);
+
+  const history = useHistory();
+
+  // Changes page behavior between sign up and sign in options
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
 
     setErrorMessage("");
   };
 
+  // Standardizes error message based on data returned by Firebase
   const parseErrorCodes = (res) => {
     let message = "";
 
     switch (res.error.message) {
+      case "WEAK_PASSWORD : Password should be at least 6 characters":
+        message = "Password should be at least 6 characters";
+        break;
+
       case "EMAIL_EXISTS":
-        message = "The email address is already in use by another account.";
+        message = "This email address is already in use by another account.";
         break;
 
       case "OPERATION_NOT_ALLOWED":
@@ -28,7 +53,7 @@ const AuthForm = () => {
 
       case "TOO_MANY_ATTEMPTS_TRY_LATER":
         message =
-          "We have blocked all requests from this device due to unusual activity. Pleas try again later.";
+          "We have blocked all requests from this device due to unusual activity. Please try again later.";
         break;
 
       case "EMAIL_NOT_FOUND":
@@ -36,8 +61,7 @@ const AuthForm = () => {
         break;
 
       case "INVALID_PASSWORD":
-        message =
-          "The password is invalid or the user does not have a password.";
+        message = "The combination user/password is invalid.";
         break;
 
       case "USER_DISABLED":
@@ -51,13 +75,14 @@ const AuthForm = () => {
     setErrorMessage(message);
   };
 
+  // Submits user credentials to Firebase endpoints
   const submitHandler = (event) => {
     event.preventDefault();
 
     setErrorMessage("");
 
     const enteredEmail = emailInputRef.current.value;
-    const enteredPassword = emailInputRef.current.value;
+    const enteredPassword = passwordInputRef.current.value;
     let url = "";
 
     if (isLogin) {
@@ -78,44 +103,67 @@ const AuthForm = () => {
       headers: {
         "Content-Type": "application/json",
       },
-    }).then((res) => {
-      if (res.ok) {
-        return res.json().then((data) => console.log(data));
-      } else {
-        return res.json().then((data) => parseErrorCodes(data));
-      }
-    });
+    })
+      // Both successfull and unsuccessfull requests returns a json body
+      .then((res) => {
+        return res.json();
+      })
+      .then((data) => {
+        if (data.error) {
+          parseErrorCodes(data);
+          return;
+        } else {
+          // Expiration information is sent in seconds, converting date to timestamp
+          const expiringDate = new Date(
+            new Date().getTime() + data.expiresIn * 1000
+          ).getTime();
+
+          authCtx.login(data.idToken, expiringDate);
+
+          // Redirects user to the profile page after login succeeded
+          history.replace("/profile");
+        }
+      })
+      .catch((err) => {
+        // TODO: refactor error handling
+        console.warn(err);
+      });
   };
 
   return (
-    <section className={classes.auth}>
+    <section className={styles.auth}>
       <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+
       <form onSubmit={submitHandler}>
-        <div className={classes.control}>
+        <div className={styles.control}>
           <label htmlFor="email">Your Email</label>
           <input type="email" id="email" required ref={emailInputRef} />
         </div>
-        <div className={classes.control}>
+
+        <div className={styles.control}>
           <label htmlFor="password">Your Password</label>
           <input
             type="password"
             id="password"
+            minLength="6"
             required
             ref={passwordInputRef}
           />
         </div>
-        <div className={classes.actions}>
+
+        <div className={styles.actions}>
           <button>{isLogin ? "Login" : "Create Account"}</button>
           <button
             type="button"
-            className={classes.toggle}
+            className={styles.toggle}
             onClick={switchAuthModeHandler}
           >
             {isLogin ? "Create new account" : "Login with existing account"}
           </button>
         </div>
       </form>
-      <p className={classes.error}> {errorMessage}</p>
+
+      <p className={styles.error}> {errorMessage}</p>
     </section>
   );
 };
