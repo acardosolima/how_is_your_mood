@@ -3,7 +3,7 @@ name: Build and Test
 on:
   push:
     branches: [ "main" ]
-   pull_request:
+  pull_request:
     branches: [ "main" ]
 
 jobs:
@@ -42,24 +42,3 @@ jobs:
           path: build
       - name: Run tests
         run: npm test
-
-        
-    
-  deploy:
-    name: Deploy
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@main
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: build
-      - name: Deploy to Firebase
-        uses: w9jds/firebase-action@master
-        with:
-          args: deploy --only hosting
-        env: 
-          FIREBASE_TOKEN: ${{ secrets.FIREBASE_TOKEN }}
