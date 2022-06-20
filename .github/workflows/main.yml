@@ -33,7 +33,7 @@ jobs:
       - name: Checkout Repo
         uses: actions/checkout@main
       - name: Download Artifact
-        uses: actions/download-artifact@main
+        uses: actions/download-artifact@v3
         with:
           name: dist
           path: dist
