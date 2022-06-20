@@ -1,4 +1,4 @@
-name: Build and Test
+name: Test
 
 on:
   push:
@@ -7,8 +7,8 @@ on:
     branches: [ "main" ]
 
 jobs:
-  build:
-    name: Build
+  test:
+    name: Build and Test
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -21,26 +21,7 @@ jobs:
         with:
           node-version: ${{ matrix.node-version }}
       - name: Install dependencies
-        run: npm install
-      - name: Build
-        run: npm run build
-      - name: Archive Test Artifact
-        uses: actions/upload-artifact@v3
-        with: 
-          name: build
-          path: build
-          
-  test:
-    name: Test
-    needs: build
-    runs-on: ubuntu-latest
-    steps:
-      - name: Checkout Repo
-        uses: actions/checkout@main
-      - name: Download Artifact
-        uses: actions/download-artifact@v3
-        with:
-          name: build
-          path: build
-      - name: Run tests
+        run: npm ci
+      - name: Test
         run: npm test
+
