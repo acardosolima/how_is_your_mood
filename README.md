@@ -8,11 +8,11 @@ A React app to log in your daily mood, medicines and activities, so you can trac
 
 ## Development
 
-1- Install Node 16 or later.
-2- Clone this repository.
-3- Run `npm install` to install the dependencies.
-4- Run `npm start` to start the badge server and the frontend dev server.
-5- Open http://localhost:3000/ to view the frontend.
+1. Install Node 16 or later.
+2. Clone this repository.
+3. Run `npm install` to install the dependencies.
+4. Run `npm start` to start the badge server and the frontend dev server.
+5. Open http://localhost:3000/ to view the frontend.
 
 ## Colaborators
 
