@@ -1,7 +1,8 @@
-import { Fragment } from 'react';
+import { Fragment } from "react";
 
-import MainNavigation from './MainNavigation';
+import MainNavigation from "./MainNavigation";
 
+// Component just wraps the content displayed, assuring the navigation bar always appears
 const Layout = (props) => {
   return (
     <Fragment>
