@@ -10,6 +10,8 @@ const AuthForm = () => {
 
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
+
+    setErrorMessage("");
   };
 
   const parseErrorCodes = (res) => {
@@ -27,6 +29,19 @@ const AuthForm = () => {
       case "TOO_MANY_ATTEMPTS_TRY_LATER":
         message =
           "We have blocked all requests from this device due to unusual activity. Pleas try again later.";
+        break;
+
+      case "EMAIL_NOT_FOUND":
+        message = "There is no user record corresponding to this identifier.";
+        break;
+
+      case "INVALID_PASSWORD":
+        message =
+          "The password is invalid or the user does not have a password.";
+        break;
+
+      case "USER_DISABLED":
+        message = "The user account has been disabled by an administrator.";
         break;
 
       default:
