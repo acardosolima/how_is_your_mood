@@ -1,7 +1,7 @@
 import { render, screen } from "@testing-library/react";
 import StartingPage from "./StartingPage";
 
-describe("Page messages", () => {
+describe("Page content", () => {
   test("renders app value for the user", () => {
     render(<StartingPage />);
 
