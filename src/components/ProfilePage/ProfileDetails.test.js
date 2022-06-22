@@ -6,7 +6,8 @@ describe("Cadastral information", () => {
     render(<ProfileDetails />);
 
     const emailValue = screen.getByAltText("email");
-    const emailRegex = new RegExp("^\\w+@\\w+.\\w+$");
+    const emailRegex =
+      /^(([^<>()\[\]\\.,;:\s@"]+(\.[^<>()\[\]\\.,;:\s@"]+)*)|(".+"))@((\[\\d{1,3}\.\\d{1,3}\.\\d{1,3}\.\\d{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
 
     expect(emailValue).toHaveDisplayValue(emailRegex);
   });
