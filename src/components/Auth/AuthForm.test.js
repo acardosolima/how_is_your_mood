@@ -1,4 +1,5 @@
 import { render, screen, fireEvent } from "@testing-library/react";
+import { act } from "react-dom/test-utils";
 import AuthForm from "./AuthForm";
 
 beforeEach(() => {
@@ -6,20 +7,20 @@ beforeEach(() => {
 });
 
 describe("Page Content", () => {
-  test("renders login form", () => {
+  test("renders two buttons in form", () => {
     const buttons = screen.getAllByRole("button");
 
     // Validates if there are only two buttons: submit (login/signup) and toggle
     expect(buttons).toHaveLength(2);
+  });
 
+  test("renders login form", () => {
+    const buttons = screen.getAllByRole("button");
     expect(buttons[0].innerHTML).toEqual("Login");
   });
 
   test("renders signup form", () => {
     const buttons = screen.getAllByRole("button");
-
-    // Validates if there are only two buttons: submit (login/signup) and toggle
-    expect(buttons).toHaveLength(2);
 
     // Clicks the second button to enable sign up option
     fireEvent.click(buttons[1]);
