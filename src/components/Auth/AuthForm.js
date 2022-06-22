@@ -13,7 +13,7 @@ const AuthForm = () => {
   const passwordInputRef = useRef();
 
   // Custom hook to deal with http requests
-  const [isLoading, error, sendRequest] = useHttp();
+  const [error, sendRequest] = useHttp();
 
   // Variable containing the standardized error message
   const [errorMessage, setErrorMessage] = useState(null);
