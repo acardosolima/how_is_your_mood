@@ -24,7 +24,7 @@ const ProfileDetails = () => {
     setFirstName(res.firstName);
     setLastName(res.lastName);
     setEmail(res.email);
-    //setLastVisit(res.lastVisit);
+    setLastVisit(res.lastVisit);
   };
 
   useEffect(() => {
