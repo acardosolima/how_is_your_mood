@@ -13,7 +13,7 @@ const AuthForm = () => {
   const passwordInputRef = useRef();
 
   // Custom hook to deal with http requests
-  const [error, sendRequest] = useHttp();
+  const [isLoading, error, sendRequest] = useHttp();
 
   // Variable containing the standardized error message
   const [errorMessage, setErrorMessage] = useState(null);
@@ -34,7 +34,7 @@ const AuthForm = () => {
       new Date().getTime() + data.expiresIn * 1000
     ).getTime();
 
-    authCtx.login(data.idToken, expiringDate);
+    authCtx.login(data.localId, data.idToken, expiringDate);
   };
 
   // Submits user credentials to Firebase endpoints
