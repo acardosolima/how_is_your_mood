@@ -4,6 +4,7 @@ A React app to log in your daily mood, medicines and activities, so you can trac
 
 [![Test](https://github.com/acardosolima/how_is_your_mood/actions/workflows/test.yml/badge.svg)](https://github.com/acardosolima/how_is_your_mood/actions/workflows/test.yml)
 [![codecov](https://codecov.io/gh/acardosolima/how_is_your_mood/branch/main/graph/badge.svg?token=II93AMCITW)](https://codecov.io/gh/acardosolima/how_is_your_mood)
+[![Quality Gate Status](https://sonarcloud.io/api/project_badges/measure?project=acardosolima_how_is_your_mood&metric=alert_status)](https://sonarcloud.io/summary/new_code?id=acardosolima_how_is_your_mood)
 [![Deploy](https://github.com/acardosolima/how_is_your_mood/actions/workflows/deploy.yml/badge.svg)](https://github.com/acardosolima/how_is_your_mood/actions/workflows/deploy.yml)
 [![License](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 
