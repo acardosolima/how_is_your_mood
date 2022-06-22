@@ -59,6 +59,8 @@ const ProfileDetails = () => {
         <label htmlFor="lastVisit"> Last visited in: </label>
         <input type="date" id="lastVisit" value={lastVisit} disabled />
       </div>
+      {isLoading ? <p> Loading </p> : ""}
+      <p> {error}</p>
     </div>
   );
 };
