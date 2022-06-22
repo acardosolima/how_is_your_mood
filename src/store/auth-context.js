@@ -1,11 +1,5 @@
 import { createContext, useCallback, useEffect, useState } from "react";
 
-/*
---------------------------------------------------------------------
---- TODO: Refactor component to outsource localstorage handling  ---
---------------------------------------------------------------------
-*/
-
 // Variable to hold the current timer function pointer
 let logoutTimer;
 

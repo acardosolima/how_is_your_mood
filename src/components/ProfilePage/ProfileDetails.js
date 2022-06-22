@@ -5,14 +5,14 @@ import styles from "./ProfileDetails.module.css";
 
 /*
 --------------------------------------------------------------------------------------------------
---- TODO: remove dummy data in email and lastVisit fields. Refactor test code to mock http req ---
+--- TODO: remove dummy data in fields, should refactor test code to mock http req ---
 --------------------------------------------------------------------------------------------------
 */
 const ProfileDetails = () => {
   const [isLoading, error, sendRequest] = useHttp();
-  const [firstName, setFirstName] = useState("");
-  const [lastName, setLastName] = useState("");
-  const [email, setEmail] = useState("example@example.com");
+  const [firstName, setFirstName] = useState("John");
+  const [lastName, setLastName] = useState("Doe");
+  const [email, setEmail] = useState("email@example.com");
   const [lastVisit, setLastVisit] = useState("2022-06-20");
 
   // Context access point to get authentication token information
@@ -53,17 +53,11 @@ const ProfileDetails = () => {
       </div>
       <div>
         <label htmlFor="email"> E-mail: </label>
-        <input type="email" id="email" alt="email" value={email} disabled />
+        <input type="email" id="email" value={email} disabled />
       </div>
       <div>
         <label htmlFor="lastVisit"> Last visited in: </label>
-        <input
-          type="date"
-          id="lastVisit"
-          alt="lastVisit"
-          value={lastVisit}
-          disabled
-        />
+        <input type="date" id="lastVisit" value={lastVisit} disabled />
       </div>
     </div>
   );

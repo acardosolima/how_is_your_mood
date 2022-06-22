@@ -44,7 +44,7 @@ describe("Page content", () => {
       </BrowserRouter>
     );
 
-    const appValue = screen.getByAltText("lastVisit");
+    const appValue = screen.getByLabelText("Last visited in:");
     expect(appValue).toBeInTheDocument();
   });
 });
