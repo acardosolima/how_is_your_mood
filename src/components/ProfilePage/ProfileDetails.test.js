@@ -16,7 +16,7 @@ describe("Cadastral information", () => {
 
   test("renders date of last visit", () => {
     const lastVisitValue = screen.getByAltText("lastVisit");
-    const lastVisitRegex = new RegExp("^\\d{4}.\\d{2}.\\d{2}$");
+    const lastVisitRegex = new RegExp("^\\d{4}[-.]\\d{2}[-.]\\d{2}$");
 
     expect(lastVisitValue).toHaveDisplayValue(lastVisitRegex);
   });

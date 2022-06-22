@@ -12,6 +12,7 @@ let logoutTimer;
 // General context data model
 const AuthContext = createContext({
   token: "",
+  userID: "",
   isLoggedIn: false,
   login: (token) => {},
   logout: () => {},
@@ -28,8 +29,10 @@ const calculateRemainingTime = (expirationTime) => {
 const retrieveStoredToken = () => {
   const storedToken = localStorage.getItem("token");
   const storedExpiresIn = localStorage.getItem("expiresIn");
+  const storedUserID = localStorage.getItem("userID");
 
   if (calculateRemainingTime(storedExpiresIn) <= 60000) {
+    localStorage.removeItem("userID");
     localStorage.removeItem("token");
     localStorage.removeItem("expiresIn");
     return null;
@@ -38,20 +41,22 @@ const retrieveStoredToken = () => {
   return {
     token: storedToken,
     expiresIn: storedExpiresIn,
+    userID: storedUserID,
   };
 };
 
 // Exposes AuthContextProvider to wrap the necessary components
 export const AuthContextProvider = (props) => {
   const tokenData = retrieveStoredToken();
-  const initialToken = !!tokenData ? tokenData.token : "";
-  const [token, setToken] = useState(initialToken);
+  const [token, setToken] = useState(!!tokenData ? tokenData.token : "");
+  const [userID, setUserID] = useState(!!tokenData ? tokenData.userID : "");
 
   const userIsLoggedIn = !!token;
 
   // Logs out the user and clean up the localstorage and timeer
   const logoutHandler = useCallback(() => {
     setToken(null);
+    localStorage.removeItem("userID");
     localStorage.removeItem("token");
     localStorage.removeItem("expiresIn");
 
@@ -61,8 +66,10 @@ export const AuthContextProvider = (props) => {
   }, []);
 
   // Logs in the user, adding token information to localstorage and setting initial timer
-  const loginHandler = (token, expiresIn) => {
+  const loginHandler = (userID, token, expiresIn) => {
+    setUserID(userID);
     setToken(token);
+    localStorage.setItem("userID", userID);
     localStorage.setItem("token", token);
     localStorage.setItem("expiresIn", expiresIn);
 
@@ -71,7 +78,8 @@ export const AuthContextProvider = (props) => {
 
   // Updated context data, referencing variables and function pointers
   const contextValue = {
-    token: token,
+    token,
+    userID,
     isLoggedIn: userIsLoggedIn,
     login: loginHandler,
     logout: logoutHandler,
