@@ -7,7 +7,7 @@ describe("Cadastral information", () => {
 
     const emailValue = screen.getByAltText("email");
     const emailRegex =
-      /[a-z0-9\._%+!$&*=^|~#'`?{}/\-]+@([a-z0-9\-]+\.)+([a-z]{2,16})/;
+      /^([A-Za-z0-9_\-.+])+@([A-Za-z0-9_\-.])+\.([A-Za-z]{2,})$/;
 
     expect(emailValue).toHaveDisplayValue(emailRegex);
   });
