@@ -1,5 +1,4 @@
 import { useState, useRef, useContext, useEffect } from "react";
-import { useHistory } from "react-router-dom";
 import useHttp from "../../hooks/use-http";
 import AuthContext from "../../store/auth-context";
 
@@ -22,8 +21,6 @@ const AuthForm = () => {
   // Context access point to get authentication token information
   const authCtx = useContext(AuthContext);
 
-  const history = useHistory();
-
   // Changes page behavior between sign up and sign in options
   const switchAuthModeHandler = () => {
     setIsLogin((prevState) => !prevState);
@@ -41,7 +38,7 @@ const AuthForm = () => {
   };
 
   // Submits user credentials to Firebase endpoints
-  const submitHandler = (event) => {
+  const submitHandler = async (event) => {
     event.preventDefault();
 
     const enteredEmail = emailInputRef.current.value;
@@ -71,11 +68,6 @@ const AuthForm = () => {
       },
       persistTokenData
     );
-
-    // Redirects user to the profile page after login succeeded
-    if (!error) {
-      history.replace("/profile");
-    }
   };
 
   useEffect(() => {
