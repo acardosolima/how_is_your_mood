@@ -108,6 +108,7 @@ const AuthForm = () => {
         </div>
       </form>
 
+      {isLoading ? <p> Loading </p> : ""}
       <p className={styles.error}> {errorMessage}</p>
     </section>
   );
