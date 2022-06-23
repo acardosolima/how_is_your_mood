@@ -1,8 +1,5 @@
-import LoadingSpinner from "../components/UI/LoadingSpinner";
-import Modal from "../components/UI/Modal";
-
-const ProfilePage = () => {
+const MoodsPage = () => {
   return;
 };
 
-export default ProfilePage;
+export default MoodsPage;

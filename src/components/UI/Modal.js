@@ -1,5 +1,4 @@
 import { Fragment } from "react";
-import { createPortal } from "react-dom";
 import styles from "./Modal.module.css";
 
 const Backdrop = (props) => {
