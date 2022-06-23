@@ -1,4 +1,5 @@
 .header {
+  font-size: 1.5rem;
   width: 100%;
   height: 5rem;
   background-color: #ffc41b;
@@ -6,14 +7,17 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 10%;
+  padding: 0 2%;
 }
 
 .logo {
-  font-family: "Lato", sans-serif;
   font-size: 2rem;
+  font-family: "Lato", sans-serif;
   color: #1b2e3f;
   margin: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .header ul {
@@ -37,19 +41,36 @@
 .header button {
   font: inherit;
   background-color: transparent;
-  border: 1px solid #1b2e3f;
+  border: 0.1rem solid #1b2e3f;
   color: #1b2e3f;
   font-weight: bold;
   padding: 0.5rem 1.5rem;
-  border-radius: 6px;
+  border-radius: 0.2rem;
   cursor: pointer;
 }
 
 .header a:hover {
-  border-bottom: 3px solid #1b2e3f;
+  border-bottom: 0.2rem solid #1b2e3f;
 }
 
 .header button:hover {
   background-color: #1b2e3f;
   color: #ffc41b;
+}
+
+@media (max-device-width: 768px) {
+  .logo p {
+    display: none;
+  }
+
+  .header li {
+    font-size: 0.9rem;
+    margin: 0.5rem;
+  }
+}
+
+@media (min-device-width: 769px) {
+  .logo p {
+    font-size: 2rem;
+  }
 }
