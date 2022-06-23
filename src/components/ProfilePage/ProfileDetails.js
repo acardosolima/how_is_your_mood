@@ -1,5 +1,7 @@
 import { useEffect, useState, useContext, useMemo } from "react";
 import useHttp from "../../hooks/use-http";
+import Modal from "../UI/Modal";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import AuthContext from "../../store/auth-context";
 import styles from "./ProfileDetails.module.css";
 
@@ -59,7 +61,13 @@ const ProfileDetails = () => {
         <label htmlFor="lastVisit"> Last visited in: </label>
         <input type="date" id="lastVisit" value={lastVisit} disabled />
       </div>
-      {isLoading ? <p> Loading </p> : ""}
+      {isLoading ? (
+        <Modal>
+          <LoadingSpinner />
+        </Modal>
+      ) : (
+        ""
+      )}
       <p> {error}</p>
     </div>
   );
