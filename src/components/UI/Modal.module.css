@@ -1,0 +1,48 @@
+.backdrop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  z-index: 20;
+  justify-content: center;
+
+  background-color: rgba(0, 0, 0, 0.75);
+}
+
+.modal-original {
+  position: fixed;
+  top: 40vh;
+  left: 5%;
+  width: 90%;
+  background-color: white;
+  padding: 1rem;
+  border-radius: 14px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.25);
+  z-index: 30;
+}
+
+.modal {
+  position: absolute;
+  top: 40%;
+  left: 40%;
+  z-index: 30;
+}
+
+@media (min-width: 768px) {
+  .modal {
+    top: 45%;
+    left: 45%;
+  }
+}
+
+@keyframes slide-down {
+  from {
+    opacity: 0;
+    transform: translateY(-3rem);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

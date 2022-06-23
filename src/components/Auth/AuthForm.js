@@ -1,4 +1,6 @@
 import { useState, useRef, useContext, useEffect } from "react";
+import Modal from "../UI/Modal";
+import LoadingSpinner from "../UI/LoadingSpinner";
 import useHttp from "../../hooks/use-http";
 import AuthContext from "../../store/auth-context";
 
@@ -108,7 +110,13 @@ const AuthForm = () => {
         </div>
       </form>
 
-      {isLoading ? <p> Loading </p> : ""}
+      {isLoading ? (
+        <Modal>
+          <LoadingSpinner />
+        </Modal>
+      ) : (
+        ""
+      )}
       <p className={styles.error}> {errorMessage}</p>
     </section>
   );

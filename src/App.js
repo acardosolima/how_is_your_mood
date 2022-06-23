@@ -1,8 +1,9 @@
 import { Redirect, Route, Switch } from "react-router-dom";
 
+import Layout from "./components/Layout/Layout";
 import AuthPage from "./pages/AuthPage";
 import HomePage from "./pages/HomePage";
-import Layout from "./components/Layout/Layout";
+import MoodsPage from "./pages/MoodsPage";
 import ProfilePage from "./pages/ProfilePage";
 import { useContext } from "react";
 import AuthContext from "./store/auth-context";
@@ -33,6 +34,12 @@ function App() {
         {authCtx.isLoggedIn && (
           <Route path="/profile">
             <ProfilePage />
+          </Route>
+        )}
+
+        {authCtx.isLoggedIn && (
+          <Route path="/moods">
+            <MoodsPage />
           </Route>
         )}
 
