@@ -2,6 +2,7 @@ import { Fragment, useContext } from "react";
 import { Link, useHistory } from "react-router-dom";
 import AuthContext from "../../store/auth-context";
 
+import logo from "../../images/logo.png";
 import styles from "./MainNavigation.module.css";
 
 const MainNavigation = () => {
@@ -19,8 +20,9 @@ const MainNavigation = () => {
 
   return (
     <header className={styles.header}>
-      <Link to="/">
-        <div className={styles.logo}>How is your mood?</div>
+      <Link to="/" className={styles.logo}>
+        <img src={logo} id="logo" alt="How is your mood? logo" />
+        <p>How is your mood?</p>
       </Link>
       <nav>
         <ul>
@@ -38,6 +40,9 @@ const MainNavigation = () => {
             <Fragment>
               <li>
                 <Link to="/profile">Profile</Link>
+              </li>
+              <li>
+                <Link to="/moods">Moods</Link>
               </li>
               <li>
                 <button onClick={logoutHandler}>Logout</button>
