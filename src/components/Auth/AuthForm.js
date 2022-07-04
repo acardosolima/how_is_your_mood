@@ -116,7 +116,7 @@ const AuthForm = () => {
           {isLogin ? "Create new account" : "Login with existing account"}
         </Form.Text>
       </Form>
-      {error ? <Alert variant="danger"> {error} </Alert> : ""}
+      {errorMessage ? <Alert variant="danger"> {errorMessage} </Alert> : ""}
       {isLoading ? (
         <Modal>
           <LoadingSpinner />

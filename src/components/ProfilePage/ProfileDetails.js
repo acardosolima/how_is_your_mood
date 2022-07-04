@@ -47,51 +47,53 @@ const ProfileDetails = () => {
   }, [sendRequest, userID, token]);
 
   return (
-    <Form>
-      <fieldset disabled>
-        <h1> Your user profile </h1>
-        <Form.Group as={Row} className="mb-3" controlId="profileFirstName">
-          <Form.Label column sm={2}>
-            First Name:
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Control type="text" value={firstName} readOnly />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="profileLastName">
-          <Form.Label column sm={2}>
-            Last Name:
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Control type="text" value={lastName} readOnly />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="profileEmail">
-          <Form.Label column sm={2}>
-            E-mail:
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Control type="email" value={email} readOnly />
-          </Col>
-        </Form.Group>
-        <Form.Group as={Row} className="mb-3" controlId="profileLastVisit">
-          <Form.Label column sm={2}>
-            Last visited in:
-          </Form.Label>
-          <Col sm={10}>
-            <Form.Control type="date" value={lastVisit} readOnly />
-          </Col>
-        </Form.Group>
-      </fieldset>
-      {error ? <Alert variant="danger"> {error} </Alert> : ""}
-      {isLoading ? (
-        <Modal>
-          <LoadingSpinner />
-        </Modal>
-      ) : (
-        ""
-      )}
-    </Form>
+    <div className="container">
+      <Form>
+        <fieldset disabled>
+          <h1> Your user profile </h1>
+          <Form.Group as={Row} className="mb-3" controlId="profileFirstName">
+            <Form.Label column sm={2}>
+              First Name:
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control type="text" value={firstName} readOnly />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3" controlId="profileLastName">
+            <Form.Label column sm={2}>
+              Last Name:
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control type="text" value={lastName} readOnly />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3" controlId="profileEmail">
+            <Form.Label column sm={2}>
+              E-mail:
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control type="email" value={email} readOnly />
+            </Col>
+          </Form.Group>
+          <Form.Group as={Row} className="mb-3" controlId="profileLastVisit">
+            <Form.Label column sm={2}>
+              Last visited in:
+            </Form.Label>
+            <Col sm={10}>
+              <Form.Control type="date" value={lastVisit} readOnly />
+            </Col>
+          </Form.Group>
+        </fieldset>
+        {error ? <Alert variant="danger"> {error} </Alert> : ""}
+        {isLoading ? (
+          <Modal>
+            <LoadingSpinner />
+          </Modal>
+        ) : (
+          ""
+        )}
+      </Form>
+    </div>
   );
 };
 

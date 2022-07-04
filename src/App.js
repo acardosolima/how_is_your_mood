@@ -7,6 +7,7 @@ import MoodsPage from "./pages/MoodsPage";
 import ProfilePage from "./pages/ProfilePage";
 import { useContext } from "react";
 import AuthContext from "./store/auth-context";
+import NewMoodPage from "./pages/NewMood";
 
 /*
 -----------------------------------------------------------------
@@ -40,6 +41,12 @@ function App() {
         {authCtx.isLoggedIn && (
           <Route path="/moods">
             <MoodsPage />
+          </Route>
+        )}
+
+        {authCtx.isLoggedIn && (
+          <Route path="/new-mood">
+            <NewMoodPage />
           </Route>
         )}
 
