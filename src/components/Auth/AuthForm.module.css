@@ -3,7 +3,6 @@
   width: 95%;
   max-width: 25rem;
   border-radius: 6px;
-  background-color: #ffc41b;
   box-shadow: 0 1px 4px rgba(0, 0, 0, 0.2);
   padding: 1rem;
   text-align: center;
@@ -60,22 +59,7 @@
   padding: 0.5rem 2.5rem;
 }
 
-.actions button:hover {
-  color: #ffc41b;
-  background-color: #1b2e3f;
-  border-color: #1b2e3f;
-}
-
-.actions .toggle {
-  margin-top: 1rem;
-  background-color: transparent;
+.toggle:hover {
   color: #1b2e3f;
-  border: none;
-  padding: 0.15rem 1.5rem;
-}
-
-.actions .toggle:hover {
-  background-color: transparent;
-  color: #1b2e3f;
-  border-bottom: 3px solid #1b2e3f;
+  border-bottom: 0.15rem solid #0d6efd;
 }
