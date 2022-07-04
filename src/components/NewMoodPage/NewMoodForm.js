@@ -21,7 +21,10 @@ const NewMoodForm = () => {
   const newMoodFormHandler = (event) => {
     event.preventDefault();
 
+    const currentTime = new Date().getTime() / 1000;
+
     const submitObject = {
+      key: moodDateRef.current.value,
       date: moodDateRef.current.value,
       anxiety: anxietyValue,
       depression: depressionValue,
@@ -30,6 +33,7 @@ const NewMoodForm = () => {
       physicalActivity: physicalActivity,
       alcoholConsumption: alcoholConsumption,
       notes: notesRef.current.value,
+      createdAt: currentTime,
     };
 
     console.log(submitObject);
@@ -37,22 +41,22 @@ const NewMoodForm = () => {
 
   const anxietyOnChangeHandler = (event) => {
     const selectedValue = event.target.id;
-    setAnxietyValue(selectedValue.replace("Radio", ""));
+    setAnxietyValue(selectedValue.replace("AnxietyRadio", ""));
   };
 
   const depressionOnChangeHandler = (event) => {
     const selectedValue = event.target.id;
-    setDepressionValue(selectedValue.replace("Radio", ""));
+    setDepressionValue(selectedValue.replace("DepressionRadio", ""));
   };
 
   const enthusiasmOnChangeHandler = (event) => {
     const selectedValue = event.target.id;
-    setEnthusiasmValue(selectedValue.replace("Radio", ""));
+    setEnthusiasmValue(selectedValue.replace("EnthusiasmRadio", ""));
   };
 
   const irritabilityOnChangeHandler = (event) => {
     const selectedValue = event.target.id;
-    setIrritabilityValue(selectedValue.replace("Radio", ""));
+    setIrritabilityValue(selectedValue.replace("IrritabilityRadio", ""));
   };
 
   const physicalActivityOnChangeHandler = (event) => {

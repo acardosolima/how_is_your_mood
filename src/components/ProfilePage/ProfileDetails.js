@@ -48,7 +48,7 @@ const ProfileDetails = () => {
 
   return (
     <div className="container">
-      <Form>
+      <Form className={styles.profile}>
         <fieldset disabled>
           <h1> Your user profile </h1>
           <Form.Group as={Row} className="mb-3" controlId="profileFirstName">
