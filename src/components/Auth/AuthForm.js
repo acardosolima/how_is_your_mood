@@ -115,15 +115,6 @@ const AuthForm = () => {
           {isLogin ? "Create new account" : "Login with existing account"}
         </Form.Text>
       </Form>
-
-      {isLoading ? (
-        <Modal>
-          <LoadingSpinner />
-        </Modal>
-      ) : (
-        ""
-      )}
-      <p className={styles.error}> {errorMessage}</p>
     </section>
   );
 };
