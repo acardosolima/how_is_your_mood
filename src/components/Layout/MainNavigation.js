@@ -4,6 +4,10 @@ import AuthContext from "../../store/auth-context";
 
 import logo from "../../images/logo.png";
 import styles from "./MainNavigation.module.css";
+import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
+import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
 
 const MainNavigation = () => {
   // Context access point to check which links should be enabled, considering user login status
@@ -19,39 +23,51 @@ const MainNavigation = () => {
   };
 
   return (
-    <header className={styles.header}>
-      <Link to="/" className={styles.logo}>
-        <img src={logo} id="logo" alt="How is your mood? logo" />
-        <p>How is your mood?</p>
-      </Link>
-      <nav>
-        <ul>
-          <li>
-            <Link to="/">Home</Link>
-          </li>
+    <Navbar bg="dark" variant="dark">
+      <Container>
+        <Link to="/">
+          <img
+            src={logo}
+            id="logo"
+            alt="How is your mood?"
+            width="50"
+            height="50"
+            className="d-inline-block align-middle"
+          />
+        </Link>
+        <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="justify-content-end">
+            <Nav.Link as={Link} to="/">
+              Home
+            </Nav.Link>
 
-          {!authCtx.isLoggedIn && (
-            <li>
-              <Link to="/auth">Login</Link>
-            </li>
-          )}
-
+            {!authCtx.isLoggedIn && (
+              <Nav.Link as={Link} to="/auth">
+                Login
+              </Nav.Link>
+            )}
+            {authCtx.isLoggedIn && (
+              <Fragment>
+                <Nav.Link as={Link} to="/profile">
+                  Profile
+                </Nav.Link>
+                <Nav.Link as={Link} to="/moods">
+                  Moods
+                </Nav.Link>
+              </Fragment>
+            )}
+          </Nav>
+        </Navbar.Collapse>
+        <Nav className="me-auto">
           {authCtx.isLoggedIn && (
-            <Fragment>
-              <li>
-                <Link to="/profile">Profile</Link>
-              </li>
-              <li>
-                <Link to="/moods">Moods</Link>
-              </li>
-              <li>
-                <button onClick={logoutHandler}>Logout</button>
-              </li>
-            </Fragment>
+            <Button variant="outline-light" onClick={logoutHandler}>
+              Logout
+            </Button>
           )}
-        </ul>
-      </nav>
-    </header>
+        </Nav>
+      </Container>
+    </Navbar>
   );
 };
 

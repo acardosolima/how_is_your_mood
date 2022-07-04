@@ -1,16 +1,6 @@
 .profile {
   margin: 3rem auto;
+  width: 90%;
   text-align: center;
   border: 1px dashed #1b2e3f;
-}
-
-.profile input {
-  font: inherit;
-  background-color: #efe9e0;
-  color: #1b2e3f;
-  border-radius: 0.2rem;
-  border: 0.2rem solid #efe9e0;
-  width: auto;
-  text-align: left;
-  padding: 0.25rem;
 }

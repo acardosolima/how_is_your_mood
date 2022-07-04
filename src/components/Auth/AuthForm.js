@@ -1,9 +1,13 @@
 import { useState, useRef, useContext, useEffect } from "react";
 import Modal from "../UI/Modal";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import useHttp from "../../hooks/use-http";
 import AuthContext from "../../store/auth-context";
 
+import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "./AuthForm.module.css";
 
 const AuthForm = () => {
@@ -79,37 +83,40 @@ const AuthForm = () => {
 
   return (
     <section className={styles.auth}>
-      <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+      <Form onSubmit={submitHandler}>
+        <h1>{isLogin ? "Login" : "Sign Up"}</h1>
+        <Form.Group className="mb-3" controlId="formLoginEmail">
+          <Form.Label> Your e-mail</Form.Label>
+          <Form.Control
+            type="email"
+            placeholder="Enter email"
+            required
+            ref={emailInputRef}
+          />
+        </Form.Group>
 
-      <form onSubmit={submitHandler}>
-        <div className={styles.control}>
-          <label htmlFor="email">Your Email</label>
-          <input type="email" id="email" required ref={emailInputRef} />
-        </div>
-
-        <div className={styles.control}>
-          <label htmlFor="password">Your Password</label>
-          <input
+        <Form.Group className="mb-3" controlId="formLoginPassworld">
+          <Form.Label> Your password</Form.Label>
+          <Form.Control
             type="password"
-            id="password"
+            placeholder="Enter password"
             minLength="6"
             required
             ref={passwordInputRef}
           />
-        </div>
+        </Form.Group>
 
-        <div className={styles.actions}>
-          <button>{isLogin ? "Login" : "Create Account"}</button>
-          <button
-            type="button"
-            className={styles.toggle}
-            onClick={switchAuthModeHandler}
-          >
-            {isLogin ? "Create new account" : "Login with existing account"}
-          </button>
-        </div>
-      </form>
+        <Form.Group className="mb-3" controlId="formLoginSubmitBtn">
+          <Button variant="primary" type="submit">
+            {isLogin ? "Login" : "Create Account"}
+          </Button>
+        </Form.Group>
 
+        <Form.Text onClick={switchAuthModeHandler} className={styles.toggle}>
+          {isLogin ? "Create new account" : "Login with existing account"}
+        </Form.Text>
+      </Form>
+      {error ? <Alert variant="danger"> {error} </Alert> : ""}
       {isLoading ? (
         <Modal>
           <LoadingSpinner />
@@ -117,7 +124,6 @@ const AuthForm = () => {
       ) : (
         ""
       )}
-      <p className={styles.error}> {errorMessage}</p>
     </section>
   );
 };

@@ -3,6 +3,10 @@ import useHttp from "../../hooks/use-http";
 import Modal from "../UI/Modal";
 import LoadingSpinner from "../UI/LoadingSpinner";
 import AuthContext from "../../store/auth-context";
+import Form from "react-bootstrap/Form";
+import Row from "react-bootstrap/Row";
+import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
 import styles from "./ProfileDetails.module.css";
 
 /*
@@ -43,24 +47,43 @@ const ProfileDetails = () => {
   }, [sendRequest, userID, token]);
 
   return (
-    <div className={styles.profile}>
-      <h1> Your User Profile</h1>
-      <div>
-        <label htmlFor="firstName"> First Name: </label>
-        <input type="text" id="firstName" value={firstName} disabled />
-      </div>
-      <div>
-        <label htmlFor="lastName"> Last Name: </label>
-        <input type="text" id="lastName" value={lastName} disabled />
-      </div>
-      <div>
-        <label htmlFor="email"> E-mail: </label>
-        <input type="email" id="email" value={email} disabled />
-      </div>
-      <div>
-        <label htmlFor="lastVisit"> Last visited in: </label>
-        <input type="date" id="lastVisit" value={lastVisit} disabled />
-      </div>
+    <Form>
+      <fieldset disabled>
+        <h1> Your user profile </h1>
+        <Form.Group as={Row} className="mb-3" controlId="profileFirstName">
+          <Form.Label column sm={2}>
+            First Name:
+          </Form.Label>
+          <Col sm={10}>
+            <Form.Control type="text" value={firstName} readOnly />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3" controlId="profileLastName">
+          <Form.Label column sm={2}>
+            Last Name:
+          </Form.Label>
+          <Col sm={10}>
+            <Form.Control type="text" value={lastName} readOnly />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3" controlId="profileEmail">
+          <Form.Label column sm={2}>
+            E-mail:
+          </Form.Label>
+          <Col sm={10}>
+            <Form.Control type="email" value={email} readOnly />
+          </Col>
+        </Form.Group>
+        <Form.Group as={Row} className="mb-3" controlId="profileLastVisit">
+          <Form.Label column sm={2}>
+            Last visited in:
+          </Form.Label>
+          <Col sm={10}>
+            <Form.Control type="date" value={lastVisit} readOnly />
+          </Col>
+        </Form.Group>
+      </fieldset>
+      {error ? <Alert variant="danger"> {error} </Alert> : ""}
       {isLoading ? (
         <Modal>
           <LoadingSpinner />
@@ -68,8 +91,7 @@ const ProfileDetails = () => {
       ) : (
         ""
       )}
-      <p> {error}</p>
-    </div>
+    </Form>
   );
 };
 
