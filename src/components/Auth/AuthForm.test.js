@@ -9,8 +9,8 @@ describe("Page Content", () => {
   test("renders two buttons in form", () => {
     const buttons = screen.getAllByRole("button");
 
-    // Validates if there are only two buttons: submit (login/signup) and toggle
-    expect(buttons).toHaveLength(2);
+    // Validates if there are only one button: submit (login/signup)
+    expect(buttons).toHaveLength(1);
   });
 
   test("renders login form", () => {
@@ -19,10 +19,11 @@ describe("Page Content", () => {
   });
 
   test("renders signup form", () => {
-    const buttons = screen.getAllByRole("button");
+    const toggle = screen.getByText("Create new account");
+    const button = screen.getByRole("button");
 
-    // Clicks the second button to enable sign up option
-    fireEvent.click(buttons[1]);
-    expect(buttons[0].innerHTML).toEqual("Create Account");
+    // Clicks the toggle button to enable sign up option
+    fireEvent.click(toggle);
+    expect(button.innerHTML).toEqual("Create Account");
   });
 });
