@@ -2,7 +2,7 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import { useState, useRef } from "react";
 
-const NewMoodPage = () => {
+const NewMoodForm = () => {
   //Gets the current date to pass as a initial value to the date input
   const currentDate = new Date().toISOString().substring(0, 10);
 
@@ -174,4 +174,4 @@ const NewMoodPage = () => {
   );
 };
 
-export default NewMoodPage;
+export default NewMoodForm;

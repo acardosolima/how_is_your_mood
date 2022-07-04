@@ -7,7 +7,7 @@ import MoodsPage from "./pages/MoodsPage";
 import ProfilePage from "./pages/ProfilePage";
 import { useContext } from "react";
 import AuthContext from "./store/auth-context";
-import NewMoodPage from "./pages/NewMood";
+import NewMoodPage from "./pages/NewMoodPage";
 
 /*
 -----------------------------------------------------------------
