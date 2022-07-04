@@ -1,8 +1,9 @@
 import { useState, useRef, useContext, useEffect } from "react";
-import Button from "react-bootstrap/Button";
-import Form from "react-bootstrap/Form";
 import Modal from "../UI/Modal";
 import LoadingSpinner from "../UI/LoadingSpinner";
+import Button from "react-bootstrap/Button";
+import Form from "react-bootstrap/Form";
+import Alert from "react-bootstrap/Alert";
 import useHttp from "../../hooks/use-http";
 import AuthContext from "../../store/auth-context";
 
@@ -115,6 +116,14 @@ const AuthForm = () => {
           {isLogin ? "Create new account" : "Login with existing account"}
         </Form.Text>
       </Form>
+      {error ? <Alert variant="danger"> {error} </Alert> : ""}
+      {isLoading ? (
+        <Modal>
+          <LoadingSpinner />
+        </Modal>
+      ) : (
+        ""
+      )}
     </section>
   );
 };

@@ -6,6 +6,7 @@ import AuthContext from "../../store/auth-context";
 import Form from "react-bootstrap/Form";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
+import Alert from "react-bootstrap/Alert";
 import styles from "./ProfileDetails.module.css";
 
 /*
@@ -82,6 +83,14 @@ const ProfileDetails = () => {
           </Col>
         </Form.Group>
       </fieldset>
+      {error ? <Alert variant="danger"> {error} </Alert> : ""}
+      {isLoading ? (
+        <Modal>
+          <LoadingSpinner />
+        </Modal>
+      ) : (
+        ""
+      )}
     </Form>
   );
 };
